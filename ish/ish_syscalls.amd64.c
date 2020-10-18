@@ -13,14 +13,14 @@ long ish_read(
 
 	);
 
-    return result;
+    	return result;
 }
 
 int ish_chdir(const char *path)
 {
 
 	//return -1;
-	long result;
+	int result;
 	__asm__ __volatile__ (
 	  	"mov $0x50, %%rax\n\t"
 		"syscall"
@@ -28,12 +28,12 @@ int ish_chdir(const char *path)
 
 	);
 
-    return result;
+    	return result;
 }
 
 void ish_exit(int status)
 {
-	long result;
+	int result;
 	__asm__ __volatile__ (
 		"mov $0x3c, %%rax\n\t"
 		"syscall"
@@ -43,7 +43,7 @@ void ish_exit(int status)
 
 int ish_stat(const char *path, void *stat_result)
 {
-	long result;
+	int result;
 	__asm__ __volatile__ (
 		"mov $0x4, %%rax\n\t"
 		"syscall"
@@ -54,7 +54,7 @@ int ish_stat(const char *path, void *stat_result)
 
 int ish_open(const char *path, int flags)
 {
-    long result;
+    int result;
         __asm__ __volatile__ (
                 "mov $0x2, %%rax\n\t"
                 "syscall"
@@ -67,7 +67,7 @@ int ish_open(const char *path, int flags)
 int ish_creat(const char *path, unsigned int mode)
 {
 
-	long result;
+	int result;
         __asm__ __volatile__ (
                 "mov $0x55, %%rax\n\t"
                 "syscall"
@@ -80,7 +80,7 @@ int ish_creat(const char *path, unsigned int mode)
 
 int ish_dup2(int old_file_descriptor, int new_file_descriptor)
 {
-	long result;
+	int result;
         __asm__ __volatile__ (
                 "mov $0x21, %%rax\n\t"
                 "syscall"
@@ -93,7 +93,7 @@ int ish_dup2(int old_file_descriptor, int new_file_descriptor)
 
 int ish_close(int file_descriptor)
 {
-	long result;
+	int result;
         __asm__ __volatile__ (
                 "mov $0x3, %%rax\n\t"
                 "syscall"
@@ -105,7 +105,7 @@ int ish_close(int file_descriptor)
 
 int ish_fork()
 {
-    	 long result;
+    	 int result;
         __asm__ __volatile__ (
                 "mov $0x39, %%rax\n\t"
                 "syscall"
@@ -121,7 +121,7 @@ int ish_execve(
         char *const environment[]
     )
 {
-	long result;
+	int result;
         __asm__ __volatile__ (
                 "mov $0x3b, %%rax\n\t"
                 "syscall"
@@ -133,12 +133,15 @@ int ish_execve(
 
 int ish_waitpid(int pid, int *status, int options)
 {
-	long result;
+	int result;
+	char rusage [256];
         __asm__ __volatile__ (
                 "mov $0x3d, %%rax\n\t"
                 "syscall"
                 :"=a"(result)
-        );
+		:"c"(&rusage)
+        	:
+	);
         return result;
 
 }
