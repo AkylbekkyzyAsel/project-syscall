@@ -1,3 +1,4 @@
+
 #ifndef ISH_SYSCALLS_H
 #define ISH_SYSCALLS_H
 
@@ -71,27 +72,47 @@
     #define write   ish_write
 #endif
 
+#define read    ish_read
+
 long ish_read(
         int file_descriptor,
         void *buffer,
         unsigned long buffer_size
      );
 
+#define chdir   ish_chdir
+
 int ish_chdir(const char *path);
+
+#define exit    ish_exit
 
 void ish_exit(int status);
 
+#define stat    ish_stat
+
 int ish_stat(const char *path, void *stat_result);
+
+#define open    ish_open
 
 int ish_open(const char *path, int flags);
 
+#define creat   ish_creat
+
 int ish_creat(const char *path, unsigned int mode);
+
+#define dup2    ish_dup2
 
 int ish_dup2(int old_file_descriptor, int new_file_descriptor);
 
+#define close   ish_close
+
 int ish_close(int file_descriptor);
 
+#define fork    ish_fork
+
 int ish_fork(void);
+
+#define execve  ish_execve
 
 int ish_execve(
         const char *path,
@@ -99,7 +120,11 @@ int ish_execve(
         char *const environment[]
     );
 
+#define waitpid ish_waitpid
+
 int ish_waitpid(int pid, int *status, int options);
+
+#define write   ish_write
 
 long ish_write(
         int file_descriptor,

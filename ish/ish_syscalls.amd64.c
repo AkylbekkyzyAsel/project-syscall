@@ -4,63 +4,115 @@ long ish_read(
         unsigned long buffer_size
      )
 {
-    // TODO
 
-    return -1;
+    	long result;
+    	__asm__ __volatile__ (
+		"mov $0x0, %%rax\n\t"
+		"syscall"
+		:"=a" (result)
+
+	);
+
+    return result;
 }
 
 int ish_chdir(const char *path)
 {
-    // TODO
 
-    return -1;
+	//return -1;
+	long result;
+	__asm__ __volatile__ (
+	  	"mov $0x50, %%rax\n\t"
+		"syscall"
+		:"=a" (result)
+
+	);
+
+    return result;
 }
 
 void ish_exit(int status)
 {
-    // TODO
+	long result;
+	__asm__ __volatile__ (
+		"mov $0x3c, %%rax\n\t"
+		"syscall"
+		:"=a"(result)
+	);
 }
 
 int ish_stat(const char *path, void *stat_result)
 {
-    // TODO
-
-    return -1;
+	long result;
+	__asm__ __volatile__ (
+		"mov $0x4, %%rax\n\t"
+		"syscall"
+		:"=a"(result)
+	);
+    	return result;
 }
 
 int ish_open(const char *path, int flags)
 {
-    // TODO
+    long result;
+        __asm__ __volatile__ (
+                "mov $0x2, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+    return result;
 
-    return -1;
 }
 
 int ish_creat(const char *path, unsigned int mode)
 {
-    // TODO
 
-    return -1;
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x55, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+    	return result;
+
+
 }
 
 int ish_dup2(int old_file_descriptor, int new_file_descriptor)
 {
-    // TODO
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x21, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
+
 }
 
 int ish_close(int file_descriptor)
 {
-    // TODO
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x3, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
 }
 
 int ish_fork()
 {
-    // TODO
+    	 long result;
+        __asm__ __volatile__ (
+                "mov $0x39, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
 }
 
 int ish_execve(
@@ -69,16 +121,26 @@ int ish_execve(
         char *const environment[]
     )
 {
-    // TODO
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x3b, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
 }
 
 int ish_waitpid(int pid, int *status, int options)
 {
-    // TODO
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x3d, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
 }
 
 long ish_write(
@@ -87,7 +149,12 @@ long ish_write(
         unsigned long buffer_size
      )
 {
-    // TODO
+	long result;
+        __asm__ __volatile__ (
+                "mov $0x1, %%rax\n\t"
+                "syscall"
+                :"=a"(result)
+        );
+        return result;
 
-    return -1;
 }

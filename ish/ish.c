@@ -205,9 +205,12 @@ int main(int argc, char **argv, char **envp)
             `man 2 stat`
         */
         #ifdef ISH_USE_STDLIB
-            struct stat stat_buffer;
+/*            struct stat stat_buffer;
             struct stat *stat_result =
                 &stat_buffer;
+*/
+           char stat_result[256];
+
         #else
             char stat_result[256];
         #endif
