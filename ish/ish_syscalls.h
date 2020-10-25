@@ -121,7 +121,7 @@ int ish_execve(
         char *const environment[]
     );
 
-#define waitpid ish_waitpid
+//#define waitpid ish_waitpid
 
 int ish_waitpid(int pid, int *status, int options);
 

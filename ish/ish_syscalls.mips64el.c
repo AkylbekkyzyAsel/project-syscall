@@ -4,63 +4,135 @@ long ish_read(
         unsigned long buffer_size
      )
 {
-    // TODO
+    register long result asm("v0");
 
-    return -1;
+	__asm__ __volatile__ (
+		"li $v0, 5000\n\t"
+		"syscall"
+		: "=r"(result)
+
+	);
+
+    return result;
 }
 
 int ish_chdir(const char *path)
 {
-    // TODO
+	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5078\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+	return result;
+   
 }
 
 void ish_exit(int status)
 {
-    // TODO
+   	register int result asm("v0");
+
+        __asm__ __volatile__ (
+                "li $v0, 5058\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+
 }
 
 int ish_stat(const char *path, void *stat_result)
 {
-    // TODO
+	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5004\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_open(const char *path, int flags)
 {
-    // TODO
+	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5002\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_creat(const char *path, unsigned int mode)
 {
-    // TODO
+	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5083\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_dup2(int old_file_descriptor, int new_file_descriptor)
 {
-    // TODO
+    	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5032\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_close(int file_descriptor)
 {
-    // TODO
+    	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5003\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_fork()
 {
-    // TODO
+	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5056\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_execve(
@@ -69,16 +141,34 @@ int ish_execve(
         char *const environment[]
     )
 {
-    // TODO
+    	register int result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5057\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
 
 int ish_waitpid(int pid, int *status, int options)
 {
-    // TODO
+    
+    register long result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5059\n\t"
+                "li $v0, 0\n\t"
+                "syscall"
+                : "=r"(result)
+                ::"$a3"
+        );
+
+        return result;
+
 }
 
 long ish_write(
@@ -87,7 +177,16 @@ long ish_write(
         unsigned long buffer_size
      )
 {
-    // TODO
+	register long result asm("v0");
 
-    return -1;
+        __asm__ __volatile__ (
+                "li $v0, 5001\n\t"
+                "syscall"
+                : "=r"(result)
+
+        );
+
+        return result;
+
 }
+
