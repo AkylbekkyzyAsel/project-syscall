@@ -157,7 +157,7 @@ int ish_execve(
 int ish_waitpid(int pid, int *status, int options)
 {
     
-    register long result asm("v0");
+    register int result asm("v0");
 
         __asm__ __volatile__ (
                 "li $v0, 5059\n\t"
