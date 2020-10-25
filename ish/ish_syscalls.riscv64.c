@@ -133,7 +133,6 @@ int ish_close(int file_descriptor)
 
 int ish_fork()
 {
-	return -1;
 	register int result asm("a0");
 
         __asm__ __volatile__ (
