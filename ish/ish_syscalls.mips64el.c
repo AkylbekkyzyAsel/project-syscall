@@ -161,7 +161,7 @@ int ish_waitpid(int pid, int *status, int options)
 
         __asm__ __volatile__ (
                 "li $v0, 5059\n\t"
-                "li $v0, 0\n\t"
+                "li $a3, 0\n\t"
                 "syscall"
                 : "=r"(result)
                 ::"$a3"
